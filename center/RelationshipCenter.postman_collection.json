@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "0515f336-7eb6-4ded-88db-a34651c3c8a3",
+		"name": "RelationshipCenter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37930006"
+	},
+	"item": [
+		{
+			"name": "attendant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"team\": \"Empréstimo\",\r\n    \"name\": \"Marcos\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/attendant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"attendant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "attendants",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "tipo",
+						"value": "Cartões",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/attendants",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"attendants"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "cartoes",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allAttendants",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/allAttendants",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"allAttendants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "problem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"team\": \"Cartões\",\r\n    \"message\": \"I need a new credit card\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/problem",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"problem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "problem two",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"team\": \"Empréstimo\",\r\n    \"message\": \"I lost my credit card\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/problem",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"problem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "problem",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"team\": \"Cartões\",\r\n    \"name\": \"Carlos\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/problem",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"problem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allQueueList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/allQueues",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"allQueues"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
