@@ -1,23 +1,31 @@
 package com.relationship.center.models;
 
+import jakarta.persistence.*;
+
 import java.util.UUID;
 
+@Entity
 public class Problem {
 
-    private java.util.UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String message;
 
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
+
+    @ManyToOne
+    @JoinColumn(name = "attendant_id")
+    private Attendant attendant;
+
     public Problem(String message) {
-        this.id = UUID.randomUUID();
         this.message = message;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
+    public Problem() {
     }
 
     public String getMessage() {
@@ -26,5 +34,13 @@ public class Problem {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

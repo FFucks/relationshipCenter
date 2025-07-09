@@ -1,16 +1,30 @@
 package com.relationship.center.models;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Team {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
-    private List<Attendant> attendants = new ArrayList<>();
+
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Problem> queue = new ArrayList<>();
+
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Attendant> attendants = new ArrayList<>();
 
     public Team(String name) {
         this.name = name;
+    }
+
+    public Team() {
     }
 
     public void addAttendant(Attendant attendant) {
@@ -52,5 +66,13 @@ public class Team {
 
     public void setQueue(List<Problem> queue) {
         this.queue = queue;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
