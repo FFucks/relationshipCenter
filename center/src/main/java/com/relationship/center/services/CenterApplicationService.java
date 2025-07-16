@@ -3,7 +3,10 @@ package com.relationship.center.services;
 import com.relationship.center.models.Attendant;
 import com.relationship.center.models.Problem;
 import com.relationship.center.models.Team;
+import com.relationship.center.repository.AttendantRepository;
+import com.relationship.center.repository.ProblemRepository;
 import com.relationship.center.utils.Validations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -13,7 +16,13 @@ public class CenterApplicationService {
 
     private final Map<String, Team> teams = new HashMap<>();
 
-    CenterApplicationService() {
+    private final AttendantRepository attendantRepository;
+    private final ProblemRepository problemRepository;
+
+    CenterApplicationService(AttendantRepository attendantRepository, ProblemRepository problemRepository) {
+        this.attendantRepository = attendantRepository;
+        this.problemRepository = problemRepository;
+
         teams.put("Cartões", new Team("Cartões"));
         teams.put("Empréstimo", new Team("Empréstimo"));
         teams.put("Outros", new Team("Outros"));
@@ -23,14 +32,15 @@ public class CenterApplicationService {
         if (!Validations.validateAttendant(team)) {
             return false;
         }
-
         Attendant attendant = new Attendant(attendantName);
+
         Team t = teams.get(team);
         if (!t.getQueue().isEmpty()) {
             attendant.addProblem(t.getAndRemoveQueue());
         }
         t.addAttendant(attendant);
 
+        attendantRepository.save(attendant);
         return true;
     }
 
@@ -54,7 +64,9 @@ public class CenterApplicationService {
 
         for (Attendant attendant : t.getAttendants()) {
             if (attendant.verifyMaxProblems()) {
-                attendant.addProblem(new Problem(message));
+                Problem problem = new Problem(message);
+                attendant.addProblem(problem);
+                problemRepository.save(problem);
                 return "SUCESSO";
             }
         }
